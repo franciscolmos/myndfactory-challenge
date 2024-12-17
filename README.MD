@@ -1,15 +1,51 @@
-sudo systemctl stop postgresql
+# Setup Instructions
 
-docker-compose up -d
+Follow these steps to set up and run the project:
 
-npx prisma generate
+1. **Install dependencies**:
+    ```bash
+    npm install
+    ```
 
-npx prisma migrate dev --name init
+2. **Stop PostgreSQL service (if running locally)**:
+    ```bash
+    sudo systemctl stop postgresql
+    ```
 
-npx prisma migrate dev
+3. **Start the Docker containers**:
+    ```bash
+    docker-compose up -d
+    ```
 
-npx prisma studio
+4. **Generate Prisma client**:
+    ```bash
+    npx prisma generate
+    ```
 
-npx prisma db seed
+5. **Run any additional Prisma migrations**:
+    ```bash
+    npx prisma migrate dev
+    ```
 
-node src/server.js
+6. **Open Prisma Studio to visualize your data**:
+    ```bash
+    npx prisma studio
+    ```
+
+7. **Seed the database**:
+    ```bash
+    npx prisma db seed
+    ```
+
+8. **Start the server**:
+    ```bash
+    node src/server.js
+    ```
+
+Your application should now be running!
+
+## Postman Collection
+
+You can find the Postman collection for the API in the root of the project. Import the `user_api.postman_collection.json` file into Postman to test the endpoints.
+
+[Download Postman](https://www.postman.com/downloads/) if you haven't already.
