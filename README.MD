@@ -10,4 +10,6 @@ npx prisma migrate dev
 
 npx prisma studio
 
+npx prisma db seed
+
 node src/server.js
