@@ -62,6 +62,36 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
+					"raw": "{\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjExLCJpYXQiOjE3MzQ0NzMzMzcsImV4cCI6MTczNTA3ODEzN30.2oaGViO-WDNITIDzodgtkpEBy2WSamcvRZH7tcrkQp8\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth/refresh-token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"refresh-token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
 					"raw": "{\n    \"email\": \"francisco@gmail.com\",\n    \"password\": \"P4ssw0rd\"\n}",
 					"options": {
 						"raw": {
