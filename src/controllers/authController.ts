@@ -2,6 +2,36 @@ import { Request, Response } from 'express';
 import { userRegister, userLogin, refreshTokens } from '../services/authService';
 import { registerSchema, loginSchema } from '../utils/validationSchemas';
 
+
+/**
+ * @swagger
+ * /auth/register:
+ *   post:
+ *     summary: Register a new user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               age:
+ *                 type: integer
+ *               password:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: User created successfully
+ *       400:
+ *         description: Bad request
+ *       500:
+ *         description: Internal Server Error
+ */
 export async function register(req: Request, res: Response): Promise<void> {
   try {
     const { error } = registerSchema.validate(req.body);
@@ -24,6 +54,30 @@ export async function register(req: Request, res: Response): Promise<void> {
   }
 }
 
+
+/**
+ * @swagger
+ * /auth/login:
+ *   post:
+ *     summary: Login a user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Successful login
+ *       400:
+ *         description: Invalid email or password
+ */
 export async function login(req: Request, res: Response): Promise<void> {
   try {
     const { error } = loginSchema.validate(req.body);
@@ -46,6 +100,41 @@ export async function login(req: Request, res: Response): Promise<void> {
   }
 }
 
+
+/**
+ * @swagger
+ * /auth/refresh-token:
+ *   post:
+ *     summary: Refresh tokens
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               refreshToken:
+ *                 type: string
+ *                 description: The refresh token
+ *                 example: your_refresh_token_here
+ *     responses:
+ *       200:
+ *         description: Tokens refreshed successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 accessToken:
+ *                   type: string
+ *                 refreshToken:
+ *                   type: string
+ *       400:
+ *         description: Refresh token is required
+ *       401:
+ *         description: Invalid refresh token
+ */
 export async function refresh(req: Request, res: Response): Promise<void> {
   const { refreshToken } = req.body;
 

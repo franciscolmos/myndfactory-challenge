@@ -1,11 +1,14 @@
 import express from 'express';
-import  userRoutes  from './routes/userRoutes'
-import  authRoutes from './routes/authRoutes'
+import  userRoutes  from './routes/userRoutes';
+import { setupSwagger } from './swagger';
+import  authRoutes from './routes/authRoutes';
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+
+setupSwagger(app);
 
 // Usar el enrutador de usuarios
 app.use('/api/users', userRoutes);
